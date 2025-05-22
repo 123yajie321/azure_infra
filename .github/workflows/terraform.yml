@@ -2,7 +2,7 @@ name: 'Terraform'
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev"]
   pull_request:
 env:
   AA_WF_VAR: "this is a workflow env variable"
@@ -58,7 +58,7 @@ jobs:
   apply:
       name: 'Terraform Apply'
       runs-on: self-hosted
-      environment: production
+      environment: ${{ github.ref_name == 'main' && 'production' || 'dev' }} 
       needs: ["plan"]
 
       env:
