@@ -41,6 +41,8 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
+      env:
+        TF_VAR_name: yajieTest2 
       run: terraform plan -input=false -out plan.out
 
     - name: Plan summary
